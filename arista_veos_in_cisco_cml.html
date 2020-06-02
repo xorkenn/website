@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Arista vEOS in Cisco CML - xor.wf</title>
+  <meta name="description" content="Things I've written about stuff.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-fonts@1.1.1/fonts/inter.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+</head>
+
+<body>
+  <header>
+    <h1>xor.wf</h1>
+    <nav><a href="/">Home</a> / <a href="https://twitter.com/xorkenn">Twitter</a> / <a href="https://github.com/xorkenn">GitHub</a></nav>
+  </header>
+  <h1>Arista vEOS in Cisco CML</h1>
+  <p><small>Posted 2020-06-02</small></p>
+  <p>One of the hassles of using Cisco VIRL was adding new, non-Cisco devices. Since we used a mix of Cisco and Arista equipment at work I wanted to setup a lab environment, and it would be perfect to do that in VIRL. There were some (really good) <a href="https://gogs.informatik.hs-fulda.de/srieger/virl-utils-hs-fulda/">efforts made</a> at being able to import Arista EOS but I never got it to work 100%. The biggest issue I encountered was the configuration in the devices not getting exported which was a bit annoying, this meant that if the project was shutdown and restarted the configuration was completly gone.</p>
+  <p>Fortunately things are a lot better in Cisco CML (which has replaced VIRL) so running Arista vEOS devices is possible without getting gray hairs.</p>
+  <p>The necessary steps are as follows:</p>
+  <ul>
+    <li>Download and convert a vEOS image and upload it to CML</li>
+    <li>Create new node definition</li>
+    <li>Create the image definition</li>
+  </ul>
+  <p>I'm using the 32-bit version of vEOS 4.24.0F which is available on the Arista website (filename <code>vEOS-lab-4.24.0F.vmdk</code>). There is a 64-bit version as well but I could run the 32-bit version with less memory than the 64-bit one. As far as I know there's no difference in functionality so for a lab this is no problem.</p>
+  <p>To be able to upload this file to CML it has to be in <code>qcow2</code> format. There's many ways to do this conversion but since I'm on Windows I downloaded <code>qemu-img.exe</code> from <a href="https://cloudbase.it/qemu-img-windows/">this website</a> and ran the following command from <code>cmd.exe</code>:
+<pre>
+qemu-img.exe convert vEOS-lab-4.24.0F.vmdk -O qcow2 veos-lab-4.24.0f.qcow2
+</pre>
+  <p>Finish this step by uploading the file via the CML web interface.</p>
+  <p>Creating the node and image definitions are not hard but can be a bit tedious. To make things easier on myself (and hopefully others) I have uploaded the definitions to <a href="https://github.com/xorkenn/arista-veos-in-cisco-cml">GitHub</a>, it however doesn't seem possible to import a image definition. The settings I used are as follows:</p>
+<pre>
+ID: veos
+Label: veos-4.24.0f
+Description: Arista vEOS 4.24.0F
+Disk Image: Previously uploaded image
+Node Definition: Arista vEOS
+</pre>
+  <p>Now you should be good to go, add a vEOS device into your lab and see if it boots properly through the console.</p>
+</body>
+</html>
