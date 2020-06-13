@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>How good is IPv6 only Internet? - xor.wf</title>
+  <meta name="description" content="Things I've written about stuff.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-fonts@1.1.1/fonts/inter.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+</head>
+
+<body>
+  <header>
+    <h1>xor.wf</h1>
+    <nav><a href="/">Home</a> / <a href="https://twitter.com/xorkenn">Twitter</a> / <a href="https://github.com/xorkenn">GitHub</a></nav>
+  </header>
+  <h1>How good is IPv6 only Internet?</h1>
+  <p><small>Posted 2020-06-13</small></p>
+  <p>Tl;dr: Not that good.</p>
+  <p>Earlier this week I got IPv6 enabled on my home Internet connection, so right now I'm dual-stacked running both IPv6 and IPv6 internally and externally. I haven't noticed any issues and I got everything running by just enabling DHCPv6 through the mobile app I use to manage my <a href="https://amplifi.com/amplifi-hd">Amplifi HD</a> device.</p>
+  <p>Just for fun I decided to disable the IPv6 stack on my Windows 10 workstation and see what sites and services I use would still be usable over a IPv6 only connection. It's just a fun little experiment and there's lots of things I didn't take into account. For instance I'm not sure if DNS is going over IPv6 or IPv6 at the moment but this is something I will look into in the future. It would also be interesting to compare download speeds, traceroutes and latency (to name a few) between IPv4 and IPv6.</p>
+  <p>I plan on doing this test every now and then to see if anything has changed, and also add more items to the list as I can think of them.</p>
+  <p>I am also aware of the fact that this site is not available via IPv6. Right now I'm using Github Pages for hosting and that service don't support IPv6. Once I get around to setting up a VPS this will change.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Site/Service</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ars Technica</td>
+        <td>Not working</td>
+      </tr>
+      </tr>
+      <tr>
+        <td>Backblaze</td>
+        <td>Frontpage works but can't sign in. App doesn't work</td>
+      </tr>
+      <tr>
+        <td>Discord desktop client</td>
+        <td>Not working, stuck at trying to download updates</td>
+      </tr>
+      <tr>
+        <td>Facebook</td>
+        <td>Works great</td>
+      </tr>
+      <tr>
+        <td>Github</td>
+        <td>Not working</td>
+      </tr>
+      </tr>
+      <tr>
+        <td>Google</td>
+        <td>Works great</td>
+      </tr>
+      <tr>
+        <td>Netflix</td>
+        <td>Seems to work (can login) but can't stream due to funky driver issues on my end</td>
+      </tr>
+      <tr>
+        <td>Reddit</td>
+        <td>Not working</td>
+      </tr>
+      <tr>
+        <td>Slack web interface</td>
+        <td>Not working</td>
+      </tr>
+      <tr>
+        <td>Spotify</td>
+        <td>spotify.com works and it's possible to download the app, but not login (goes into offline mode)</td>
+      </tr>
+      <tr>
+        <td>Stack Overflow</td>
+        <td>Not working</td>
+      </tr>
+      <tr>
+        <td>Steam desktop client</td>
+        <td>Not working, can't connect</td>
+      </tr>
+      <tr>
+        <td>Telegram web</td>
+        <td>Works great</td>
+      </tr>
+      <tr>
+        <td>Twitch</td>
+        <td>Not working</td>
+      </tr>
+      <tr>
+        <td>Twitter</td>
+        <td>Not working</td>
+      </tr>
+      <tr>
+        <td>VMware</td>
+        <td>Worked great, able to login and download software</td>
+      </tr>
+      <tr>
+        <td>Wikipedia</td>
+        <td>Works great</td>
+      </tr>
+      <tr>
+        <td>Windows 10</td>
+        <td>Windows Update works, but not license activation or SmartScreen. WSL2 <a href="https://docs.microsoft.com/en-us/windows/wsl/compare-versions">can't do IPv6 only</a> but WSL1 can</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
